@@ -1,0 +1,34 @@
+ <div class="grid gap-0 column-gap-3">
+
+
+    <div class="col-4 m-3">
+        <div class="form-floating ">
+        <input type="text" class="form-control" value="{{this.name}}" id="floatingInput" placeholder="name" name="name">
+        <label for="floatingInput">Full Name</label>
+        </div>
+    </div>
+    <div class="col-4 m-3">
+        <div class="form-floating ">
+        <input type="email" class="form-control" value="{{this.email}}" id="floatingInput" placeholder="email" name="email">
+        <label for="floatingInput">email</label>
+        </div>
+    </div>
+    <div class="col-4 m-3">
+        <div class="form-floating ">
+        <input type="text" class="form-control" value="{{this.number}}" id="floatingInput"  placeholder="number" name="number">
+        <label for="floatingInput">number</label>
+        </div>
+    </div>
+
+    <div class="m-3 col-6">
+        <div class="form-floating ">
+        <textarea class="form-control" placeholder="Leave a comment here" id="comments" name="message" style="height: 200px">{{this.message}}</textarea>
+        <label for="comments">Comments</label>
+        </div>
+    </div>
+    <div class="col-5 d-grid m-5">
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+   
+
+    </div>

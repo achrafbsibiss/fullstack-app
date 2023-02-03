@@ -24,5 +24,10 @@ router.post('/adduserinadmine', userControllers.adduser)
 router.get('/edituser/:id',userControllers.edituser)
 router.post('/edituser/:id',userControllers.edituserconfirme)
 
+// to delete user
+router.get('/delete/:id',userControllers.delete)
+router.get('/:id',userControllers.confirmede)
+
+
 module.exports=router
 

@@ -207,7 +207,24 @@ exports.edituserconfirme=(req,res)=>{
                 connection.release()
             
                 if (!err){
-                    res.render('edituser',{ rows })
+                    pool.getConnection((err,connection)=>{
+                        if (err)throw err; //not connected!
+                        console.log (`connection as ID `+ connection.threadId)
+                
+                
+                          // User the connection
+                    connection.query('SELECT * FROM voip WHERE id = ?', [req.params.id], (err, rows) => {
+                        if (!err) {
+                          res.render('edituser', { rows, alert:`${name}  has been updated`});
+                        } else {
+                          console.log(err);
+                        }
+                        console.log('The data from user table: \n', rows);
+                      });
+                        
+                    
+                    })
+
                 }else{
                     console.log(err);
                 }
@@ -216,5 +233,51 @@ exports.edituserconfirme=(req,res)=>{
                 console.log("the data from voip user table: \n",rows);
             })
     })
+
+}
+
+
+// the user do you want to delete
+exports.delete=(req,res)=>{
+     // connextion to database
+     pool.getConnection((err,connection)=>{
+        if (err)throw err; //not connected!
+        console.log (`connection as ID `+ connection.threadId)
+
+
+          // select user from data to delete
+    connection.query('SELECT * FROM voip WHERE id = ?', [req.params.id], (err, rows) => {
+        if (!err) {
+          res.render('delte', { rows });
+        } else {
+          console.log(err);
+        }
+        console.log('The data from user table do you wan to delete: \n', rows);
+      });
+        
+    
+    })
+}
+
+// delete function user
+exports.confirmede=(req,res)=>{
+         // connextion to database
+         pool.getConnection((err,connection)=>{
+            if (err)throw err; //not connected!
+            console.log (`connection as ID `+ connection.threadId)
+    
+    
+              // User the delete function sql
+        connection.query('DELETE FROM voip WHERE id = ?', [req.params.id], (err, rows) => {
+            if (!err) {
+              res.redirect('/adminepage');
+            } else {
+              console.log(err);
+            }
+            console.log('The data from user table has been delete: \n', rows);
+          });
+            
+        
+        })
 
 }
